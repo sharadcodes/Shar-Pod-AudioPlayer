@@ -1,146 +1,175 @@
 const template = document.createElement("template");
 template.innerHTML = `
 <style>
-.shar-audio * {
-    font-family: "Roboto";
+* {
     padding: 0;
     margin: 0;
+    font-family: monospace;
+    outline: none !important;
+    --webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none !important;
 }
-.shar-audio {
-    background-color: #fff;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: auto 6fr; 
+h4{
+    color: #ababab;
+    font-weight: 400;
+    font-size: 16px;
 }
-.shar-audio img{
-    max-width: 180px ;
-    min-width: 180px;
-    max-height: 180px;
-    min-height: 180px;
-}
-.shar-audio h4{
-    color: #808080;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 2px;
-}
-.shar-audio h2{
+h2{
+    font-size: 25px;
     color: #323232;
-    font-size: 20px;
-    margin-top: 2px;
-    font-weight: 500;
 }
-.shar-audio .right{
+#shar-audio {
+    display: flex;
+    background: white;
+    padding: 15px;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2);
+}
+#left {
+    max-height: 220px;
+    max-width: 220px
+}
+img{
+    height: 220px;
+}
+#right{
+    display: grid;
+    grid-template-rows: auto 0fr;
+    flex: 1;
     padding-left: 20px;
-    position: relative;
 }
-.audio-player-div{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-left: 20px;
+#audio-player-div{
     display: grid;
     grid-template-columns: auto 1fr;
-    column-gap: 20px;
-    justify-content: space-between;
     align-items: center;
+    grid-gap: 20px;
 }
 #btn-play-pause{
-    color: #fff;
+    width: 65px;
+    height: 65px;
     border-radius: 100%;
-    background-color: #323232;
-    outline: none;
     border: none;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    background: #323232;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    height: 80px !important;
-    width: 80px !important;
 }
 #audio-bar-wrapper{
-    position: realtive;
-    background-color: lightgrey;
-    width: 100%;
     height: 20px;
+    background: lightgrey;
+    width: 100%;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
 }
 #audio-bar-slider{
-    position: realtive;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background-color: #323232;
-    width: 0%;
     height: 20px;
-    z-index: 100;
+    background: #323232;
+    width: 0%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 #audio-bar-mouse-slider{
-    position: relative;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background-color: transparent;
-    border-right: 2px solid red;
-    width: 0%;
     height: 20px;
-    z-index: 200;
-    margin-top: -20px;
+    background: #808080;
+    width: 0%;
     visibility: hidden;
-}
-#audio-current-time{
-    position: relative;
-    left: 0;
-    top: 0;
-    font-size: 10px;
-    background: rgba(253,242,128,.95);
-    border-radius: 3px;
-    padding: 4px;
-    display: inline-block;
-}
-#audio-full-time{
     position: absolute;
-    right: 0;
     top: 0;
-    font-size: 10px;
-    margin-top: 52px;
-    border-radius: 3px;
-    padding: 4px;
-    display: inline-block;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
-#audio-bar-wrapper:hover #audio-bar-mouse-slider {
+#audio-bar-wrapper:hover #audio-bar-mouse-slider{
     visibility: visible;
 }
+#time-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+}
+#audio-current-time {
+    background: #fdf279;
+    padding: 2px;
+    font-size: 10px;
+    border-radius: 3px;
+    color: black;
+}
+#audio-full-time{
+    background: white;
+    padding: 2px;
+    font-size: 10px;
+    border-radius: 3px;
+}
 @media screen and (max-width: 650px){
-    .shar-audio{
-        display: grid;
-        grid-template-rows: auto auto;
-        grid-template-columns: none;
+    #shar-audio{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: stretch;
+    }
+    #left {
+        max-width: 100% !important;
+    }
+    h4{
+        font-size: 12px;
+    }
+    h2{
+        font-size: 16px;
+    }
+    img{
+        width: 80px;
+        height: 80px;      
+        float: right;
+        border-radius: 100%;
+    }
+    #right{
+        padding-left: 0px;
+    }
+    #audio-player-div{
+        margin-top: 10px;
     }
 }
 </style>
 
-<div class="shar-audio">
-<img />
-<div class="right">
-        <h4></h4>
-        <h2></h2>
-        <div class="audio-player-div">
+<div id="shar-audio">
+
+    <div id="left">
+        <img />
+    </div>
+
+    <div id="right">
+        <div id="titles">
+            <h4></h4>
+            <h2></h2>
+        </div>
+        <div id="audio-player-div">
             <button id="btn-play-pause">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="50px" height="50px"><path d="M8 5v14l11-7z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
             </button>
             <div id="audio-bar-wrapper">
                 <div id="audio-bar-slider"></div>
                 <div id="audio-bar-mouse-slider"></div>
-                <div id="audio-current-time">00:00</div>
-                <div id="audio-full-time">00:00</div>
+                <div id="time-wrapper">
+                    <div id="audio-current-time">00:00</div>
+                    <div id="audio-full-time">00:00</div>
+                </div>
             </div>
-            <audio/>
         </div>
-    </div>
+    </div>  
 </div>
+<audio/>
 `;
 
 class SharAudio extends HTMLElement {
@@ -150,29 +179,75 @@ class SharAudio extends HTMLElement {
 
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.querySelector("h4").innerText = this.getAttribute("audio-title");
-    this.shadowRoot.querySelector("h2").innerText = this.getAttribute("audio-subtitle");
+    this.shadowRoot.querySelector("h4").innerText = this.getAttribute(
+      "audio-title"
+    );
+    this.shadowRoot.querySelector("h2").innerText = this.getAttribute(
+      "audio-subtitle"
+    );
     this.shadowRoot.querySelector("audio").src = this.getAttribute("src");
     this.shadowRoot.querySelector("img").src = this.getAttribute("artwork");
   }
 
   connectedCallback() {
-    this.shadowRoot.querySelector("#btn-play-pause").addEventListener("click", () => {
-      this.togglePlay();
-    });
-    this.shadowRoot.querySelector('#audio-bar-wrapper').addEventListener("mousemove", (e) => {
-        this.shadowRoot.querySelector('#audio-bar-mouse-slider').style.width = `${Math.floor(((e.x + 1 - e.target.getBoundingClientRect().left) / parseFloat(this.shadowRoot.querySelector('#audio-bar-wrapper').clientWidth)) * 100)}%`
-    });
-    this.shadowRoot.querySelector('#audio-bar-wrapper').addEventListener("click", (e) => {
-        const bar_per = (e.x + 1 - e.target.getBoundingClientRect().left) / parseFloat(this.shadowRoot.querySelector('#audio-bar-wrapper').clientWidth) * 100
-        this.shadowRoot.querySelector('audio').currentTime = bar_per * this.shadowRoot.querySelector('audio').duration / 100;
-    })
-    this.shadowRoot.querySelector("audio").addEventListener("timeupdate", () => {
-        this.shadowRoot.querySelector("#audio-current-time").innerText = SharAudio.readableDuration(this.shadowRoot.querySelector("audio").currentTime);
-    })
-    this.shadowRoot.querySelector("audio").addEventListener("loadedmetadata", () => {
-        this.shadowRoot.querySelector("#audio-full-time").innerText = SharAudio.readableDuration(this.shadowRoot.querySelector("audio").duration);
-    })
+    this.shadowRoot
+      .querySelector("#btn-play-pause")
+      .addEventListener("click", () => {
+        this.togglePlay();
+      });
+    this.shadowRoot
+      .querySelector("#audio-bar-wrapper")
+      .addEventListener("mousemove", (e) => {
+        this.shadowRoot.querySelector(
+          "#audio-bar-mouse-slider"
+        ).style.width = `${Math.floor(
+          ((e.x + 1 - e.target.getBoundingClientRect().left) /
+            parseFloat(
+              this.shadowRoot.querySelector("#audio-bar-wrapper").clientWidth
+            )) *
+            100
+        )}%`;
+      });
+    this.shadowRoot
+      .querySelector("#audio-bar-wrapper")
+      .addEventListener("click", (e) => {
+        const bar_per =
+          ((e.x + 1 - e.target.getBoundingClientRect().left) /
+            parseFloat(
+              this.shadowRoot.querySelector("#audio-bar-wrapper").clientWidth
+            )) *
+          100;
+        this.shadowRoot.querySelector("audio").currentTime =
+          (bar_per * this.shadowRoot.querySelector("audio").duration) / 100;
+        this.shadowRoot.querySelector(
+          "#audio-bar-slider"
+        ).style.width = `${Math.floor(
+          ((e.x + 1 - e.target.getBoundingClientRect().left) /
+            parseFloat(
+              this.shadowRoot.querySelector("#audio-bar-wrapper").clientWidth
+            )) *
+            100
+        )}%`;
+      });
+
+    this.shadowRoot
+      .querySelector("audio")
+      .addEventListener("timeupdate", () => {
+        this.shadowRoot.querySelector(
+          "#audio-current-time"
+        ).innerText = SharAudio.readableDuration(
+          this.shadowRoot.querySelector("audio").currentTime
+        );
+      });
+    this.shadowRoot
+      .querySelector("audio")
+      .addEventListener("loadedmetadata", () => {
+        this.shadowRoot.querySelector(
+          "#audio-full-time"
+        ).innerText = SharAudio.readableDuration(
+          this.shadowRoot.querySelector("audio").duration
+        );
+      });
   }
 
   togglePlay() {
@@ -180,21 +255,29 @@ class SharAudio extends HTMLElement {
     if (this.playAudio) {
       const audio_tag = this.shadowRoot.querySelector("audio");
       const audio_btn = this.shadowRoot.querySelector("button");
-      const slider    = this.shadowRoot.querySelector("#audio-bar-slider");
-      audio_btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="50px" height="50px"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`
+      const slider = this.shadowRoot.querySelector("#audio-bar-slider");
+      audio_btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="50px" height="50px"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`;
+      audio_btn.style.backgroundColor = "#fff";
+      audio_btn.style.border = "2px solid black";
       audio_tag.play();
-      audio_tag.ontimeupdate = function () { 
-          slider.style.width = `${SharAudio.readableWidth(audio_tag.currentTime, audio_tag.duration)}%`;
-      }
+      audio_tag.ontimeupdate = function () {
+        slider.style.width = `${SharAudio.readableWidth(
+          audio_tag.currentTime,
+          audio_tag.duration
+        )}%`;
+      };
     } else {
       const audio_tag = this.shadowRoot.querySelector("audio");
       const audio_btn = this.shadowRoot.querySelector("button");
       audio_tag.pause();
-      audio_btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="50px" height="50px"><path d="M8 5v14l11-7z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`
-      audio_tag.addEventListener("ontimeupdate", (event)=>{console.log("OK");})
+      audio_btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="50px" height="50px"><path d="M8 5v14l11-7z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`;
+      audio_btn.style.backgroundColor = "#323232";
+      audio_btn.style.border = "none";
+      audio_tag.addEventListener("ontimeupdate", (event) => {
+        console.log("OK");
+      });
     }
   }
-
 
   static readableDuration(seconds) {
     let sec = Math.floor(seconds);
@@ -204,12 +287,12 @@ class SharAudio extends HTMLElement {
     sec = sec >= 10 ? sec : "0" + sec;
     return min + ":" + sec;
   }
-  
+
   static readableWidth(seconds, duration) {
     const current = Math.floor(seconds);
     return (current / duration) * 100;
   }
-  
+
   static percentageToSeconds(percentage, duration) {
     return (percentage * duration) / 100;
   }
