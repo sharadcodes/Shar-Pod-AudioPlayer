@@ -2,7 +2,7 @@
 An open source web component for your daily podcast needs.
 > Developer: [Sharad Raj](https://github.com/sharadcodes/)
 
-## UI
+## UI 
 ![Shar Pod Audio Player Snap](https://sharadcodes.github.io/Shar-Pod-AudioPlayer/screenshots/1.png)
 
 ## [Live Demo](https://sharadcodes.github.io/Shar-Pod-AudioPlayer/example/)
