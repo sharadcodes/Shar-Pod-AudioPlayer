@@ -1,0 +1,141 @@
+@import url("http://sharadcodes.github.io/Shar-Player/src/shar_pod_audioplayer.css")
+* {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+    outline: none !important;
+    --webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none !important;
+}
+h4{
+    color: #ababab;
+    font-weight: 400;
+    font-size: 16px;
+}
+h2{
+    font-size: 25px;
+    color: #323232;
+}
+#shar-audio {
+    display: flex;
+    background: white;
+    padding: 15px;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2);
+}
+#left {
+    max-height: 220px;
+    max-width: 220px
+}
+img{
+    height: 220px;
+}
+#right{
+    display: grid;
+    grid-template-rows: auto 0fr;
+    flex: 1;
+    padding-left: 20px;
+}
+#audio-player-div{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    grid-gap: 20px;
+}
+#btn-play-pause{
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    border: none;
+    background: #323232;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#audio-bar-wrapper{
+    height: 20px;
+    background: lightgrey;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+#audio-bar-slider{
+    height: 20px;
+    background: #323232;
+    width: 0%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+#audio-bar-mouse-slider{
+    height: 20px;
+    background: #808080;
+    width: 0%;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+#audio-bar-wrapper:hover #audio-bar-mouse-slider{
+    visibility: visible;
+}
+#time-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+}
+#audio-current-time {
+    background: #fdf279;
+    padding: 2px;
+    font-size: 10px;
+    border-radius: 3px;
+    color: black;
+}
+#audio-full-time{
+    background: white;
+    padding: 2px;
+    font-size: 10px;
+    border-radius: 3px;
+}
+@media screen and (max-width: 650px){
+    #shar-audio{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: stretch;
+    }
+    #left {
+        max-width: 100% !important;
+    }
+    h4{
+        font-size: 12px;
+    }
+    h2{
+        font-size: 16px;
+    }
+    img{
+        width: 80px;
+        height: 80px;      
+        float: right;
+        border-radius: 100%;
+    }
+    #right{
+        padding-left: 0px;
+    }
+    #audio-player-div{
+        margin-top: 10px;
+    }
+}
