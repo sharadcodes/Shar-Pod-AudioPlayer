@@ -1,6 +1,6 @@
 const template = document.createElement("template");
 template.innerHTML = `
-<link href="http://sharadcodes.github.io/Shar-Player/src/shar_pod_audioplayer.css" rel="stylesheet" type="text/css">  
+<link href="https://sharadcodes.github.io/Shar-Pod-AudioPlayer/src/shar_pod_audioplayer.css" rel="stylesheet" type="text/css">  
 <div id="shar-audio">
     <div id="left">
         <img />
